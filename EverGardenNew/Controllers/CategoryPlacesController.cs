@@ -19,10 +19,31 @@ namespace EverGardenNew.Controllers
             _context = context;
         }
 
-        // GET: CategoryPlaces
+        /*// GET: CategoryPlaces
         public async Task<IActionResult> Index()
         {
             return View(await _context.CategoryPlaces.ToListAsync());
+        }*/
+
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var categories = from c in _context.CategoryPlaces
+                             select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                categories = categories.Where(c => c.Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    categories = categories.OrderByDescending(c => c.Name);
+                    break;
+                default:
+                    categories = categories.OrderBy(c => c.Name);
+                    break;
+            }
+            return View(await categories.AsNoTracking().ToListAsync());
         }
 
         // GET: CategoryPlaces/Details/5

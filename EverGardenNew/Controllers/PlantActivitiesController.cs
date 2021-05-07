@@ -20,10 +20,30 @@ namespace EverGardenNew.Controllers
         }
 
         // GET: PlantActivities
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.PlantActivities.Include(p => p.Plant);
             return View(await applicationDbContext.ToListAsync());
+        }*/
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        {
+            ViewData["TitleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            var activities = from a in _context.PlantActivities
+                           select a;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                activities = activities.Where(s => s.Title.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    activities = activities.OrderByDescending(a => a.Title);
+                    break;
+                default:
+                    activities = activities.OrderBy(a => a.Title);
+                    break;
+            }
+            return View(await activities.AsNoTracking().ToListAsync());
         }
 
         // GET: PlantActivities/Details/5

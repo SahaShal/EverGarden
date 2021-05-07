@@ -20,10 +20,40 @@ namespace EverGardenNew.Controllers
         }
 
         // GET: Plants
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Plants.Include(p => p.CategoryEdible).Include(p => p.CategoryPlace);
             return View(await applicationDbContext.ToListAsync());
+        }*/
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["ScientificNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "sc_name_desc" : "Sc_name";
+            ViewData["CurrentFilter"] = searchString;
+
+            var plants = from p in _context.Plants
+                           select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                plants = plants.Where(s => s.Name.Contains(searchString)
+                                       || s.ScientificName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    plants = plants.OrderByDescending(s => s.Name);
+                    break;
+                case "sc_name_desc":
+                    plants = plants.OrderBy(s => s.ScientificName);
+                    break;
+                case "Sc_name":
+                    plants = plants.OrderByDescending(s => s.ScientificName);
+                    break;
+                default:
+                    plants = plants.OrderBy(s => s.Name);
+                    break;
+            }
+            return View(await plants.AsNoTracking().ToListAsync());
         }
 
         // GET: Plants/Details/5
