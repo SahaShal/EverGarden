@@ -1,0 +1,66 @@
+﻿@model IEnumerable<EverGardenNew.Models.Plant>
+
+@{
+    ViewData["Title"] = "SearchPlant";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pt-4 ml-5" style="display: flex;">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header text-white font-weight-bold"
+                 style="background-color: #75C260;">
+                <span style="color: black; font-size: 20px;">Search</span>
+            </div>
+            <form asp-action="SearchPlant" method="get">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <input class="form-control" placeholder="Enter the name:" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    </li>
+                    <li class="list-group-item">
+                        <select class="custom-select" aria-label="Default select example" style="width: 394px;" name="categoryEd">
+                            <option value="0">None</option>
+                            @foreach (var item in ViewBag.CategoryEdible)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </li>
+                    <li class="list-group-item">
+                        <select class="custom-select" aria-label="Default select example" style="width: 394px;" name="categoryPl">
+                            <option value="0">None</option>
+                            @foreach (var item in ViewBag.CategoryPlace)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </li>
+                </ul>
+                <input type="submit" value="Search" class="btn" style="background-color: #75C260; margin-left: 20px;" />
+            </form>
+        </div>
+    </div>
+    <div class="col-9">
+        @foreach (var item in Model)
+        {
+            <div class="card mb-3" style="height: 260px; width: 1300px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="@item.SmallImage" alt="..." height="260px" width="430px" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <span>Scientific name: @item.ScientificName</span>
+                            <p class="card-text">@item.ShortDescription</p>
+                            <p class="card-text">
+                                @item.CategoryEdible.Name, @item.CategoryPlace.Name
+                            </p>
+                            <a class="btn" style="background-color: black; color: white" asp-action="PlantDetail" asp-route-id="@item.Id">Detailed information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -32,7 +32,9 @@ namespace EverGardenNew.Controllers
             ViewData["CurrentFilter"] = searchString;
 
             var plants = from p in _context.Plants
-                           select p;
+                         .Include(p => p.CategoryEdible)
+                         .Include(p => p.CategoryPlace)
+                         select p;
             if (!String.IsNullOrEmpty(searchString))
             {
                 plants = plants.Where(s => s.Name.Contains(searchString)

@@ -5,87 +5,93 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<div style="display: flex;">
+    <partial name="_AdminSidebar" />
+    <div class="col-10">
+        <div style="display: flex; justify-content: space-between; margin-top: 10px">
+            <h2>Plant Details</h2>
+            <p style="margin-top: 4px; margin-bottom: 0px;">
+                <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                <a class="btn" style="background-color: black; color: white" asp-action="Index">Back to List</a>
+            </p>
+        </div>
+        <hr />
 
-<div>
-    <h4>Plant</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ScientificName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ScientificName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryEdible)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryEdible.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryPlace)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryPlace.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Climate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Climate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Watering)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Watering)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BioDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BioDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SpreadingArea)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SpreadingArea)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SmallImage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SmallImage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LargeImage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LargeImage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tools)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tools)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ScientificName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ScientificName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CategoryEdible)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CategoryEdible.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CategoryPlace)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CategoryPlace.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Climate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Climate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Watering)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Watering)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ShortDescription)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ShortDescription)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.BioDescription)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.BioDescription)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.SpreadingArea)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.SpreadingArea)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.SmallImage)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.SmallImage)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LargeImage)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.LargeImage)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Tools)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Tools)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>

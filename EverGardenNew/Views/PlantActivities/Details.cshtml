@@ -5,39 +5,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<div style="display: flex;">
+    <partial name="_AdminSidebar" />
+    <div class="col-10">
+        <div style="display: flex; justify-content: space-between; margin-top: 10px">
+            <h2>Activity Details</h2>
+            <p style="margin-top: 4px; margin-bottom: 0px;">
+                <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                <a class="btn" style="background-color: black; color: white" asp-action="Index">Back to List</a>
+            </p>
+        </div>
+        <hr />
 
-<div>
-    <h4>PlantActivity</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Instructions)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Instructions)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NeededTools)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NeededTools)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Plant)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Plant.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Instructions)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Instructions)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NeededTools)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NeededTools)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Plant)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Plant.Name)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>

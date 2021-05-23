@@ -9,9 +9,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3" style="background-color: #75C260; height: 80px;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light" style="background-color: #75C260; height: 80px;">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EverGardenNew</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EverGarden</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,16 +19,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Plants" asp-action="Index">Plants</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Plants" asp-action="Index">Admin Page</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PlantActivities" asp-action="Index">Plant Activities</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CategoryEdibles" asp-action="Index">Category(Edible or not)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CategoryPlaces" asp-action="Index">Category(Indoor or not)</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SearchPlant">Search</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -36,8 +30,8 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div>
+        <main role="main">
             @RenderBody()
         </main>
     </div>

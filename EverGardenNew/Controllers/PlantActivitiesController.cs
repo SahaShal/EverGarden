@@ -29,7 +29,8 @@ namespace EverGardenNew.Controllers
         {
             ViewData["TitleSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             var activities = from a in _context.PlantActivities
-                           select a;
+                             .Include(p => p.Plant)
+                             select a;
             if (!String.IsNullOrEmpty(searchString))
             {
                 activities = activities.Where(s => s.Title.Contains(searchString));
